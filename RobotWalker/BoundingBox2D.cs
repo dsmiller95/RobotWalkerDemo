@@ -25,6 +25,24 @@ public class BoundingBox2D
         return new BoundingBox2D(min, max);
     }
 
+    /// <summary>
+    /// Force this bounds to include the given point
+    /// </summary>
+    /// <param name="toInclude">inclusive</param>
+    /// <returns></returns>
+    public BoundingBox2D Expand(Vector2 toInclude)
+    {
+        var newMin = this.min;
+        var newMax = this.max;
+        
+        newMin.X = Math.Min(min.X, toInclude.X);
+        newMin.Y = Math.Min(min.Y, toInclude.Y);
+        newMax.X = Math.Max(max.X, toInclude.X + 1);
+        newMax.Y = Math.Max(max.Y, toInclude.Y + 1);
+
+        return new BoundingBox2D(newMin, newMax);
+    }
+
     public bool Contains(Vector2 point)
     {
         if(point.X < min.X || point.X >= max.X)
@@ -37,5 +55,10 @@ public class BoundingBox2D
         }
 
         return true;
+    }
+    
+    public override string ToString()
+    {
+        return $"[{min} - {max})";
     }
 }

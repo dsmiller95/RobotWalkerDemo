@@ -3,7 +3,16 @@
 using System.Numerics;
 using RobotWalker;
 
-var bounds = BoundingBox2D.FromMinMax(new Vector2(-10, -10), new Vector2(10, 10));
+var bounds = BoundingBox2D.FromMinMax(
+    new Vector2(-10, -10),
+    new Vector2(10, 10));
+
+using(var boundsFile = File.OpenText("F:\\source\\interviews\\RobotWalker\\RobotWalker\\bounds.json"))
+{
+    var boundsJson = boundsFile.ReadToEnd();
+    bounds = new BoundsParser().ParseFromJson(boundsJson);
+    Console.WriteLine($"Bounds are {bounds}");
+}
 
 Console.WriteLine("Hello! Robot coming online.");
 const string prompt =  @"Command the robot with:
