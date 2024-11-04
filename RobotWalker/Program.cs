@@ -3,6 +3,13 @@
 using System.Numerics;
 using RobotWalker;
 
+const string prompt =  @"Command the robot with:
+  L - turn left
+  R - turn right
+  M - move forward
+  ? - this message
+  Q - quit";
+
 var bounds = BoundingBox2D.FromMinMax(
     new Vector2(-10, -10),
     new Vector2(10, 10));
@@ -15,17 +22,9 @@ using(var boundsFile = File.OpenText("F:\\source\\interviews\\RobotWalker\\Robot
 }
 
 Console.WriteLine("Hello! Robot coming online.");
-const string prompt =  @"Command the robot with:
-  L - turn left
-  R - turn right
-  M - move forward
-  ? - this message
-  Q - quit";
-
 Console.WriteLine(prompt);
 
 var walker = new RobotWalkerObject();
-
 var keepPlaying = true;
 while (keepPlaying)
 {

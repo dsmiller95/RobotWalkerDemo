@@ -2,7 +2,7 @@ namespace RobotWalker;
 
 public record RobotWalkerObject
 {
-    public  Position Position { get; init; }
+    public Position Position { get; init; }
     
     public RobotWalkerObject ExecuteCommand(RobotWalkerCommand command)
     {
